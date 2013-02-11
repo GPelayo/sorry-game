@@ -1,0 +1,137 @@
+<S> = Standardizing
+<D> = Debugger
+
+================================================================================
+=====[Final Project] (Got Score of 105/100 Yay!) [6/25/10]======================
+================================================================================
+[Gameplay Errors]
+	[7-Card]
+	+<gc71>1st pawn won't move
+	+<gc72>pawns won't advance towards final
+	+<gc73>2nd pawn has wrong destination
+	+<gc74>if one pawn goes into previous space of the other pawn,
+		first pawn goes null
+	+<gc75>pawn moves past the finish space
+		-only the norm advncmnt moved
+	+<gc76>first pawn can't move at space if occupied by second pawn
+ 		
+	+<g0>Pawns move past finish space
+	+<g1>Unusual Backwards Movement at EndGates
+	+<g2>Win Condition needs Fixing
+	+<g5>Pawn moves past index 59 don't enter index 0.
+	+<g7>Unusual Backwards movement in Safe
+        +<g8>[11-Card]Conflict with pawn Targets
+		-Pawn is considered from advancement and Special
+
+[Display Errors]
+	+<d0>Resize Card Display
+	+<d1>Fix Aquamarine Border of ChosenPawn
+
+[Goals]
+	[Improvements]
+		+<i1>Put back the red border invalid display
+		+<i2>Fix Naming Conventions
+		+<i3>Add Notifier for of # of Spaces for [7-Card]
+		+<i4>Black Borders should ovveride Color Borders
+
+	[Code Organization]
+		+<c0>Split Up MainEvent (Event Handlers and Game Engine)
+
+	[Debugger Issues]
+		+<b0>Force Card disables skip
+
+================================================================================
+=========[Post-Final FixUp] [6/25/10]-[6/30/10]=================================
+================================================================================
+[Changes]
+	~Standardization
+		-Split Up MainEvent (Event Handlers and Game Engine)
+		-Fix Most Naming Conventions
+	~Debugger
+		-Made Force Card use a Combo Box
+		-All Button Display Controls in Debugger
+		-Force Player Control created
+	~Display
+		<i1> used the invalidList form EnableSpaces()
+		-Move Message Display to the center
+		<i4>
+		-when in PawnChoiceMode all choices are blue.
+		-when in SpaceChoiceMode all choices are green.
+		
+		-first chosen space will be highlighted purple
+                <i3> added the notfier in messenger
+	~KeyBoard
+		-ESC key now Cancels move when needed.
+
+[BugFixes]
+	<gc71>In the movement section of the RunPhase Method...
+		-the 2nd pawn movement is under an if statement
+		-The 1st pawn movement is outside under the else
+		-The else statement its under no longer has conditions
+	<gc72>Made it assigned the splitSpace Indecies in order
+		-default advanced movement assigned after special cases
+	<gc73> See <gc72>
+	<gc74>MovePawn() for 2nd pawn after 1st pawn moved
+	<gc75> See <g0>
+		-got rid of an extra condition (!= safe)
+	<gc76>Added a condition to not remove space if its occupied by
+	
+	<g0>Expanded FixBoardMovement()
+		-added another arguement FixBoardMovement()
+		-its the advancement amount
+		-moved stuff from the EnableSpaces Method
+			-movement rules
+        <g1> See <g0>       
+	<g2>Fixed Winning Condition
+		-only true when its greater NUM_OF_PAWNS (Too Big)
+		-replaced with NUM_OF_PAWNS/NUM_OF_PLAYERS
+	<g5> See <g0>
+	<g7>Changed second arguement of the Fix...() to "-1"
+	    Fixed Backwards movement in Safe Condition
+		-to NextSpace <= ImaginaryGate
+	<g8>Removed Condition in MovePawn()
+		-switch cards can't use sorryBumps
+	<b0>Complete Revamp    	
+
+
+[Display Fixes]
+	<d!>made Forms, MainGame and TitlePage, non-resizable
+	<d0>Set a larger Maximum Size of LblCardName
+	<d1>Made its only change the space contain chosenPawn (No loops)
+
+[Goals]
+	Fix Bugs
+	
+================================================================================
+=========[Simplify Modes and Current Pawns]=====================================
+================================================================================
+
+[Goals]
+	-Simplify Sorry Bump
+	-Find a better way to store split move data
+		-(chosen advancement num)
+
+[Unsure Errors]
+	?<d2>Invisble Pawns
+		-probably caused by [11-Card]
+
+================================================================================
+=====[Add Player class]=========================================================
+================================================================================
+
+================================================================================
+=====[Streamline Inputs and Valid Space Display]================================
+================================================================================
+
+[Goals]
+	-Tells player he has no moves
+	-Show valid spaces over mouseover
+	-If theres only one space to move
+		>skip SpaceMode
+================================================================================
+=====[Optimize for Boardgame Engine]============================================
+================================================================================
+
+================================================================================
+=====[Create AI]================================================================
+================================================================================
